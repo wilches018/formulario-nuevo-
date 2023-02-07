@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <br>
+    <div class="netsh">
+        <form id="Formulario" action="" class="forma">
+            <div class="inputContainer">
+
+                <h1 class="title"> Formulario</h1>
+                <h2><label for="name">ID</label></h2>
+                <input id="id" type="text" placeholder="INGRESAR ID" class="form-cotrol my-2">
+
+            </div>
+            <div class="inputContainer">
+
+                <h2><label for="apellido">NOMBRE</label></h2>
+                <input id="nombre" type="text" placeholder="INGRESAR NOMBRE" class="form-cotrol my-2">
+
+            </div>
+            <div class="inputContainer">
+
+                <h2><label for="telefono">APELLIDO</label></h2>
+                <input id="apellido" type="text" placeholder="INGRESAR APELLIDO" class="form-cotrol my-2">
+                <br>
+            </div>
+            <br>
+            <br>
+            <br>
+            <button id="boton" onclick="guardar('los datos ya estan guardados')" type="button"
+                class="btn btn-primary">guardar</button>
+            <button id="boton" onclick="limpiarformulario('se limpio correctamente')" type="button"
+                class="btn btn-primary">limpiarformulario</button>
+            <button id="boton" onclick="eliminarcualquifila()" type="button" class="btn btn-primary">eliminar cualquier
+                fila</button>
+            <button id="boton" onclick="buscar()" type="button" class="btn btn-primary">buscar</button>
+        </form>
+    </div>
+</body>
+<script src="js/index.js"></script>
+
+</html>

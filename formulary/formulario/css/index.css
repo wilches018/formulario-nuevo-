@@ -1,0 +1,33 @@
+body{
+    background-color: aquamarine;
+}
+.botton{
+    position: absolute;
+    right: 39%;
+}
+.forma {
+    background-color: white;
+    width: 400px;
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+  }
+  .title {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+  .signupFrm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .netsh {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  function guardar(texto) {
+    alert(texto);
+  }
