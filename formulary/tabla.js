@@ -324,3 +324,111 @@ function searchTable() {
 // fin del buscador
 
 
+
+
+
+//aca estan los metodos en pyhton
+
+from config.db import db
+from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
+from model.Herramientas import Herramientas
+
+
+routes_guardar_herramientas = Blueprint("routes_guardar_herramientas", __name__)
+
+
+
+@routes_guardar_herramientas.route('/guardar_herramientas', methods=['POST'])
+def cuenta():
+    # id = request.form['id']
+    Nombre = request.form['nombre']
+    Bodega = request.form['Bodega']
+    Estante = request.form['Estante']
+    gaveta = request.form['Gaveta']
+    Rubro = request.form['rubro']
+    Fecha = request.form['Fecha']
+    Cantidad = request.form['Cantidad']
+    Codigo = request.form['Codigo']
+    Estado = request.form['Estado']
+    descripcion = request.form['Descripcion']
+
+    print( Nombre , Bodega)
+
+    # Verificar si la herramienta  ya está registrado
+    aprendiz_existente = db.session.query(Herramientas).filter(Herramientas.codigo == Codigo).first()
+
+    if aprendiz_existente:                
+        return "la herramienta ya existe"
+    
+
+    new_section = Herramientas( Nombre, Bodega, Estante, gaveta, Rubro, Fecha,
+                               Cantidad, Codigo, Estado, descripcion  )
+    db.session.add(new_section)
+    db.session.commit()
+
+    return "exitoso"
+
+
+
+
+    
+
+@routes_guardar_herramientas.route('/actualizar', methods=['POST'] )
+def actualiza():
+    id = request.form.get('id')
+    Nombre = request.form.get('nombre')
+    Bodega = request.form.get('Bodega')
+    Estante = request.form.get('Estante')
+    gaveta = request.form.get('Gaveta')
+    Rubro = request.form.get('rubro')
+    Fecha = request.form.get('fecha')
+    Cantidad = request.form.get('Cantidad')
+    codigo = request.form.get('Codigo')
+    Estado = request.form.get('Estado')
+    descripcion = request.form.get('Descripcion')
+
+
+
+
+    paciente = Herramientas.query.get(id)
+    paciente.Nombre = Nombre
+    paciente.Bodega = Bodega
+    paciente.Estante = Estante
+    paciente.gaveta = gaveta
+    paciente.Rubro = Rubro
+    paciente.Fecha = Fecha
+    paciente.Cantidad = Cantidad
+    paciente.codigo = codigo
+    paciente.Estado = Estado
+    paciente.descripcion = descripcion
+    
+    # Guardar los cambios en la base de datos
+    db.session.commit()
+      
+    # Enviar una respuesta exitosa
+    return jsonify({'message': 'Datos actualizados correctamente'})
+
+
+
+
+
+
+@routes_guardar_herramientas.route('/delete', methods=['POST'] )
+def eliminarregistross():
+    id_a = request.json['ids']
+    Id_Aprendiz = Herramientas.query.get(id_a)
+
+
+    if Id_Aprendiz:
+        db.session.delete(Id_Aprendiz)
+        db.session.commit()
+        return jsonify({'message': 'Registro eliminado' }) 
+    else:
+        return jsonify({'message': 'Registro  no eliminado' }) 
+
+
+
+
+
+
+
